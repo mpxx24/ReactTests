@@ -1,33 +1,35 @@
 ﻿var Users = React.createClass({
-    loadUsersFromServer: function() {
-        $.getJSON(this.props.url)
-            .then((usersData) => {
-                console.log("GOT'EM", usersData);
-                this.setState({ usersData: usersData });
-            });
+    loadUsersFromServer: function () {
+        var thisObj = this;
+        $.getJSON(this.props.url, function (usersData) {
+            thisObj.setState({ usersData: usersData });
+        });
     },
-    getInitialState(){
-        return {usersData: []};
+    getInitialState() {
+        return { usersData: [] };
     },
-    componentDidMount: function() {
+    componentDidMount: function () {
         this.loadUsersFromServer();
     },
     render: function () {
-        console.log("re");
         return (
-          <div className="users">
-            <h1>Users</h1>
-            <UsersList data= {this.props.usersData}/>
-          </div>
-      );
+                <div className="main page">
+                    <h1>Users</h1>
+                    <UsersList listOfUsers={this.state.usersData} />
+                </div>
+            );
     }
 });
 
 var UsersList = React.createClass({
     render: function () {
+        var users = this.props.listOfUsers.map(function (u) {
+            return <div className="user" key={u.Id}>{u.Name} {u.LastName}</div>;
+        });
+
         return (
             <div className="usersList">
-            {this.props.usersData}
+                {users}
             </div>
         );
     }
@@ -35,6 +37,6 @@ var UsersList = React.createClass({
 
 
 ReactDOM.render(
-  <Users url="http://localhost:60055/api/users"/>,
+  <Users url="http://localhost:60055/api/users" />,
   document.getElementById('content')
 );

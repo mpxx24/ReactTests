@@ -12,11 +12,13 @@ namespace ReactTests.WebApi.Controllers {
             {
                 new User
                 {
+                    Id = 1,
                     Name = "Mariusz",
                     LastName = "Piątkowski"
                 },
                 new User
                 {
+                    Id = 2,
                     Name = "Harry",
                     LastName = "Hole"
                 }
