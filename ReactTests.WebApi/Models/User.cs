@@ -6,6 +6,15 @@ namespace ReactTests.WebApi.Models {
     /// </summary>
     public class User {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        [Required]
+        public int Id { get; set; }
+
+        /// <summary>
         ///     Gets or sets the name.
         /// </summary>
         /// <value>
@@ -22,5 +31,7 @@ namespace ReactTests.WebApi.Models {
         /// </value>
         [Required]
         public string LastName { get; set; }
+
+        
     }
 }
